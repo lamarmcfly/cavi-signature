@@ -1,8 +1,10 @@
 export interface SignatureData {
   fullName: string;
   jobTitle: string;
+  company: string;
   phone: string;
   email: string;
+  disclaimer: string;
 }
 
 function escapeHtml(str: string): string {
@@ -32,46 +34,53 @@ export function generateSignatureHtml(
 
   const name = data.fullName.trim()
     ? escapeHtml(data.fullName.trim())
-    : '<span style="color:#8888a0">Your Name</span>';
+    : '<span style="color:#9ca3af">Your Name</span>';
   const title = data.jobTitle.trim()
     ? escapeHtml(data.jobTitle.trim())
-    : '<span style="color:#8888a0">Your Title</span>';
+    : '<span style="color:#9ca3af">Your Title</span>';
+  const company = data.company.trim()
+    ? escapeHtml(data.company.trim())
+    : "Cavi Vault Agents";
   const phone = data.phone.trim()
     ? escapeHtml(data.phone.trim())
-    : '<span style="color:#8888a0">+1-000-000-0000</span>';
+    : '<span style="color:#9ca3af">+1 (xxx) xxx-xxxx</span>';
   const email = data.email.trim()
     ? escapeHtml(data.email.trim())
     : "you@cavivaultagents.io";
   const mailto = data.email.trim()
     ? escapeHtml(data.email.trim())
     : "you@cavivaultagents.io";
+  const disclaimer = data.disclaimer.trim()
+    ? escapeHtml(data.disclaimer.trim())
+    : "";
 
-  return `<table cellpadding="0" cellspacing="0" border="0" bgcolor="#2b2b3d" style="background-color:#2b2b3d;border-radius:8px;max-width:600px;width:600px;font-family:Arial,Helvetica,sans-serif;">
-<tr><td bgcolor="#2b2b3d" style="background-color:#2b2b3d;padding:0;">
+  const disclaimerRow = disclaimer
+    ? `<tr><td style="padding:10px 0 0 0;"><p style="margin:0;padding:0;font-size:11px;font-style:italic;color:#9ca3af;line-height:1.5;">${disclaimer}</p></td></tr>`
+    : "";
+
+  return `<table cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="background-color:#ffffff;border:1px solid #e5e7eb;border-radius:12px;max-width:560px;width:560px;font-family:Arial,Helvetica,sans-serif;">
+<tr><td bgcolor="#ffffff" style="background-color:#ffffff;padding:20px 24px;">
 <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr>
-<td bgcolor="#2b2b3d" style="background-color:#2b2b3d;padding:28px 10px 28px 30px;vertical-align:top;width:350px;">
-  <p style="font-size:28px;font-weight:700;color:#c8b8ff;line-height:1.2;margin:0 0 2px 0;padding:0;">${name}</p>
-  <p style="font-size:14px;font-weight:400;color:#e0e0e0;margin:0 0 14px 0;padding:0;">${title}</p>
-  <table cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#d4ff00" style="background-color:#d4ff00;width:50px;height:3px;font-size:0;line-height:0;overflow:hidden;padding:0;margin:0;"></td></tr></table>
-  <p style="font-size:15px;font-weight:600;color:#c8b8ff;margin:16px 0 10px 0;padding:0;">Cavi Vault Agents</p>
-  <p style="font-size:13px;color:#d0d0d8;margin:0 0 4px 0;padding:0;line-height:1.5;">${phone}</p>
-  <p style="margin:0 0 4px 0;padding:0;"><a href="mailto:${mailto}" style="font-size:13px;color:#d0d0d8;text-decoration:none;line-height:1.5;">${email}</a></p>
-  <p style="margin:0;padding:0;"><a href="https://www.cavivaultagents.io" style="font-size:13px;color:#d0d0d8;text-decoration:none;line-height:1.5;">www.cavivaultagents.io</a></p>
+<td bgcolor="#ffffff" style="background-color:#ffffff;vertical-align:middle;width:110px;padding:0 16px 0 0;">
+  <a href="https://www.cavivaultagents.io" style="text-decoration:none;"><img src="${logoUrl}" alt="Cavi Vault Agents" width="100" height="100" style="display:block;border-radius:10px;border:0;outline:0;width:100px;height:100px;" /></a>
 </td>
-<td bgcolor="#2b2b3d" style="background-color:#2b2b3d;padding:20px 12px 20px 0;vertical-align:middle;text-align:center;width:230px;">
-  <table cellpadding="0" cellspacing="0" border="0" align="center"><tr>
-    <td style="vertical-align:middle;padding:0;">
-      <a href="https://www.cavivaultagents.io" style="text-decoration:none;"><img src="${logoUrl}" alt="Cavi Vault Agents" width="200" height="200" style="display:block;border-radius:50%;border:0;outline:0;width:200px;height:200px;" /></a>
-    </td>
-    <td style="padding:0 0 0 10px;vertical-align:middle;">
-      <table cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#d4ff00" style="background-color:#d4ff00;width:3px;height:160px;font-size:0;line-height:0;overflow:hidden;padding:0;"></td></tr></table>
-    </td>
-  </tr></table>
+<td bgcolor="#ffffff" style="background-color:#ffffff;vertical-align:middle;width:2px;padding:0;">
+  <table cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#7c3aed" style="background-color:#7c3aed;width:2px;height:110px;font-size:0;line-height:0;overflow:hidden;padding:0;">&nbsp;</td></tr></table>
+</td>
+<td bgcolor="#ffffff" style="background-color:#ffffff;padding:0 0 0 18px;vertical-align:middle;">
+  <p style="font-size:20px;font-weight:700;color:#0b0b1a;line-height:1.2;margin:0 0 4px 0;padding:0;">${name}</p>
+  <p style="font-size:13px;font-weight:500;color:#7c3aed;margin:0 0 12px 0;padding:0;line-height:1.4;">${title}&nbsp;&nbsp;|&nbsp;&nbsp;${company}</p>
+  <p style="margin:0 0 3px 0;padding:0;"><a href="https://www.cavivaultagents.io" style="font-size:13px;font-weight:600;color:#7c3aed;text-decoration:none;line-height:1.5;">cavivaultagents.io</a></p>
+  <p style="margin:0 0 3px 0;padding:0;"><a href="mailto:${mailto}" style="font-size:13px;color:#1a1a2e;text-decoration:none;line-height:1.5;">${email}</a></p>
+  <p style="font-size:13px;color:#1a1a2e;margin:0;padding:0;line-height:1.5;">${phone}</p>
 </td>
 </tr></table>
 </td></tr>
-<tr><td bgcolor="#2b2b3d" style="background-color:#2b2b3d;padding:0 30px 22px 30px;border-top:1px solid #3d3d55;">
-  <p style="font-size:13px;font-style:italic;color:#a8a8c0;padding-top:14px;text-align:center;letter-spacing:0.3px;margin:0;">Coordinated AI specialists working under your team&rsquo;s direction</p>
+<tr><td bgcolor="#ffffff" style="background-color:#ffffff;padding:0 24px 18px 24px;">
+  <table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr><td style="padding:4px 0 0 0;"><p style="font-size:12px;font-style:italic;color:#6b7280;margin:0;padding:0;line-height:1.5;">Coordinated AI teams that give humans superpowers.</p></td></tr>
+    ${disclaimerRow}
+  </table>
 </td></tr>
 </table>`;
 }

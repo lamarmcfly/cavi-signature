@@ -18,7 +18,7 @@ export function SignaturePreview({ data }: SignaturePreviewProps) {
       <p className="mb-4 text-xs font-medium uppercase tracking-wider text-slate-400">
         Live Preview
       </p>
-      <div className="overflow-x-auto rounded-lg">
+      <div className="overflow-x-auto rounded-lg bg-slate-100 p-4">
         <div
           dangerouslySetInnerHTML={{ __html: html }}
           className="mx-auto"
