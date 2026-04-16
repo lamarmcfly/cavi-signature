@@ -16,8 +16,10 @@ export default function Home() {
   const [data, setData] = useState<SignatureData>({
     fullName: "",
     jobTitle: "",
+    company: "Cavi Vault Agents",
     phone: "",
     email: "",
+    disclaimer: "",
   });
   const [copied, setCopied] = useState(false);
 

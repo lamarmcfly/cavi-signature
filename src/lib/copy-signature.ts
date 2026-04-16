@@ -36,7 +36,7 @@ function fallbackCopy(html: string): boolean {
 export function downloadSignatureHtml(html: string, filename: string): void {
   const fullHtml = `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><title>Email Signature</title></head>
-<body style="background:#1a1a2e;display:flex;justify-content:center;padding:40px;">
+<body style="background:#f3f4f6;display:flex;justify-content:center;padding:40px;">
 ${html}
 </body></html>`;
 
